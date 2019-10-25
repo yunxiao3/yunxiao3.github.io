@@ -15,4 +15,6 @@ sudo cat /proc/sys/vm/swappiness
 sudo sysctl -w vm.swappiness=5
 ~~~
 
+电脑重启以后设置失效，想永久修改swappiness可以在 /etc/sysctl.conf中添加vm.swappiness=5。
+
 当然Swap还有很多东西需要去学习和了解，在面对不同的应用时和不同的场景下Swap大小和swappiness的设置都有着很多学问，在此只是记录一下自己对Swap分区和系统性能之间的一点点思考。
