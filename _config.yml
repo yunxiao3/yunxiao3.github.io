@@ -119,9 +119,9 @@ index_with_subtitle: false
 menu:
   home: /
   categories: /categories/
-  about: /about/about.html
+  about: /about/index.html
   archives: /archives/
-  tags: /tags/
+  #tags: /tags/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -133,7 +133,7 @@ menu:
 #   When an question mask icon presenting up means that the item has no mapping icon.
 menu_icons:
   enable: true
-  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
+  KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
   about: user
   categories: th

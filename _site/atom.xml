@@ -1,17 +1,181 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-10-25T13:25:38+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">西红柿炒番茄</title><subtitle>We are not at rest;we are on a journey.</subtitle><author><name>Yunxiao</name></author><entry><title type="html">一点关于Linux文件系统的思考</title><link href="http://localhost:4000/linux/2019/10/19/Linux-File-System/" rel="alternate" type="text/html" title="一点关于Linux文件系统的思考" /><published>2019-10-19T23:54:18+08:00</published><updated>2019-10-19T23:54:18+08:00</updated><id>http://localhost:4000/linux/2019/10/19/Linux-File-System</id><content type="html" xml:base="http://localhost:4000/linux/2019/10/19/Linux-File-System/">&lt;p&gt;在上一篇Blog中我简单的探究了一下Linux中Swap的一些配置对Linux系统性能的影响，这几天有刚好碰到了一些磁盘分区挂载的问题，由于自己的基础不牢在解决这些问题的时候白白浪费了很多时间，所以说基础才是第一生产力啊。话不多说，切入今天的主题 &lt;strong&gt;Linux 的磁盘分区与挂载&lt;/strong&gt;。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-11-05T21:34:36+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">西红柿炒番茄</title><subtitle>We are not at rest;we are on a journey.</subtitle><author><name>Yunxiao</name></author><entry><title type="html">对Quick Sort的进一步理解</title><link href="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort/" rel="alternate" type="text/html" title="对Quick Sort的进一步理解" /><published>2019-11-05T20:21:13+08:00</published><updated>2019-11-05T20:21:13+08:00</updated><id>http://localhost:4000/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort</id><content type="html" xml:base="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort/">&lt;p&gt;最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。&lt;/p&gt;
+
+&lt;h4 id=&quot;1-经典的快排算法&quot;&gt;1. 经典的快排算法&lt;/h4&gt;
+
+&lt;p&gt;快速排序的基本思想是：先选一个“主元”，用它对整个待排序列进行筛选，以保证：其左边的元素都不大于它，其右边的元素都不小于它。这样，排序问题就被分割为两个子区间。再分别对子区间排序就可以了。&lt;/p&gt;
+
+&lt;h5 id=&quot;简单的递归实现&quot;&gt;简单的递归实现：&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;void QuickSort(int* array,int left,int right){
+    //表示已经完成一个组
+	if(left &amp;gt;= right){ 
+		return;
+	}
+    //获取枢轴的位置，并保证主元左边的元素都不大于它，其右边的元素都不小于它
+	int index = PartSort(array,left,right);
+	QuickSort(array,left,index - 1);
+	QuickSort(array,index + 1,right);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中代码的核心部分便是 &lt;strong&gt;PartSort()&lt;/strong&gt;函数，而PartSort()函数又有三种实现方式，包括 &lt;strong&gt;左右指针法，挖坑法和前后指针法&lt;/strong&gt;。下面分别介绍这三种算法的实现方式和原理：&lt;/p&gt;
+
+&lt;h5 id=&quot;1-左右指针法&quot;&gt;1. 左右指针法&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;选取一个关键字(key)作为枢轴，一般取整组记录的第一个数/最后一个，这里采用选取序列最后一个数为枢轴。&lt;/li&gt;
+    &lt;li&gt;设置两个变量left = 0;right = N - 1;从left一直向后走，直到找到一个大于key的值，right从后至前，直至找到一个小于key的值，然后交换这两个数。&lt;/li&gt;
+    &lt;li&gt;重复第三步，一直往后找，直到left和right相遇，这时将key放置left的位置即可。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PartSort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;2-挖坑法&quot;&gt;2. 挖坑法&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;选取一个关键字(key)作为枢轴，一般取整组记录的第一个数/最后一个，这里采用选取序列最后一个数为枢轴，也是初始的坑位。&lt;/li&gt;
+    &lt;li&gt;设置两个变量left = 0;right = N - 1;&lt;/li&gt;
+    &lt;li&gt;从left一直向后走，直到找到一个大于key的值，然后将该数放入坑中，坑位变成了array[left]。&lt;/li&gt;
+    &lt;li&gt;right一直向前走，直到找到一个小于key的值，然后将该数放入坑中，坑位变成array[right]。&lt;/li&gt;
+    &lt;li&gt;重复3和4的步骤，直到left和right相遇，然后将key放入最后一个坑位。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PartSort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;	 
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;3-前后指针法&quot;&gt;3. 前后指针法&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;原理:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;定义变量cur指向序列的开头，定义变量pre指向cur的前一个位置。&lt;/li&gt;
+    &lt;li&gt;当array[cur] &amp;lt; key时，cur和pre同时往后走，如果array[cur]&amp;gt;key，cur往后走，pre留在大于key的数值前一个位置。&lt;/li&gt;
+    &lt;li&gt;当array[cur]再次 &amp;lt; key时，交换array[cur]和array[pre]。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;代码&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PartSort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//如果找到小于key的值，并且cur和pre之间有距离时则进行交换。
+&lt;/span&gt;			&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cur&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;swap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-快排的时间复杂度分析&quot;&gt;2. 快排的时间复杂度分析&lt;/h4&gt;
+
+&lt;p&gt;快速排序的时间复杂度和每次划分的比例相关其公式如下所示:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;T（n）= T（n/a） + T(n/b) + n
+T（1）= 0  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;1--最优情况&quot;&gt;&lt;strong&gt;1 . 最优情况&lt;/strong&gt;&lt;/h5&gt;
+
+&lt;p&gt;在最优情况下Partition每次都划分的很均匀，即每次都对半分。则   &lt;strong&gt;T(n) = 2 T(n/2) + n&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;解得 &lt;strong&gt;Ｔ(n) = O(nlogn)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;2-最坏情况&quot;&gt;&lt;strong&gt;2. 最坏情况：&lt;/strong&gt;&lt;/h5&gt;
+
+&lt;p&gt;而最坏情况Partition每次都划分的极不均匀，即每次都分成1个和n-1个。则  &lt;strong&gt;T(n) =  T(n-1) + T(1) + n&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;解得 &lt;strong&gt;Ｔ(n) = O(n^2)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;由于markdown打公式非常累具体过程可以参照&lt;/p&gt;
+
+&lt;h4 id=&quot;3-随机快排&quot;&gt;3. 随机快排&lt;/h4&gt;
+
+&lt;p&gt;从上面的分析可知，当快排遇到已排好的数据时时间复杂度会降到 &lt;strong&gt;O(n^2)&lt;/strong&gt; 的复杂度，那么怎么避免出现这种情况呢，使得无论输入数据是什么都有一个较为稳定的性能。其实实现的方法非常简单因为传统的快排在选取主元的时候，每次都选取最右/左边的元素。当序列为有序时，会发现划分出来的两个子序列一个里面没有元素，而另一个则只比原来少一个元素。为了避免这种情况，我们可以引入一个随机化量来破坏这种有序状态。即随机取一个主元而不是取最右/左边的元素。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PartSort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;randomValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;	 
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;由于使用了随机选取主元的方式，所以随机快排的时间复杂度和输入数据的顺序便不相关了，使得他趋避免了最坏的情况而更加近于平均时间复杂度O(nlogn)使得快排的性能得到了保障，避免了出现性能极差的情况。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="读书笔记" /><category term="《算法导论》" /><summary type="html">最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。</summary></entry><entry><title type="html">我的保研之旅</title><link href="http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85/" rel="alternate" type="text/html" title="我的保研之旅" /><published>2019-10-26T16:36:03+08:00</published><updated>2019-10-26T16:36:03+08:00</updated><id>http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85</id><content type="html" xml:base="http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85/"></content><author><name>Yunxiao</name></author><summary type="html"></summary></entry><entry><title type="html">一点关于Linux文件系统的思考</title><link href="http://localhost:4000/linux/2019/10/19/Linux-File-System/" rel="alternate" type="text/html" title="一点关于Linux文件系统的思考" /><published>2019-10-19T23:54:18+08:00</published><updated>2019-10-19T23:54:18+08:00</updated><id>http://localhost:4000/linux/2019/10/19/Linux-File-System</id><content type="html" xml:base="http://localhost:4000/linux/2019/10/19/Linux-File-System/">&lt;p&gt;在上一篇Blog中我简单的探究了一下Linux中Swap的一些配置对Linux系统性能的影响，这几天有刚好碰到了一些磁盘分区挂载的问题，由于自己的基础不牢在解决这些问题的时候白白浪费了很多时间，所以说基础才是第一生产力啊。话不多说，切入今天的主题 &lt;strong&gt;Linux 的磁盘分区与挂载&lt;/strong&gt;。&lt;/p&gt;
 
 &lt;h4 id=&quot;1-硬盘分区&quot;&gt;1. 硬盘分区&lt;/h4&gt;
 
-&lt;p&gt;在了解Linux下的磁盘分区之前，首先我们得了解一下硬盘的分区，而硬盘的分区是和操作系统没有任何关系的，因为她是在安装操作系统之前进行了。无论什么操作系统在启动时首先会通过MBR来获得操作系统文件所在的分区，所以一个可引导分区是不能缺少的。这也是为什么新买的硬盘不能直接用的原因。至于为什么要划分多个分区？&lt;/p&gt;
+&lt;p&gt;在了解Linux下的磁盘分区之前，首先我们得了解一下硬盘的分区，因为硬盘的分区是和操作系统没有任何关系的，它是在安装操作系统之前进行了。无论什么操作系统在启动时首先会通过MBR（Master Boot Record是位于磁盘最前边的一段引导Loader代码。）来获得操作系统文件所在的分区，所以一个可引导分区是不能缺少的。这也是为什么新买的硬盘不能直接用的原因。说到这你可能会问磁盘为什么要划分多个分区？我所知道的原因有两个：&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;一是为了提高管理效率，所有东西放在一个分区，OS管理其起来效率比较低，因为每次要检索的东西太多。&lt;/li&gt;
-  &lt;li&gt;二是提升数据安全性，因为每个分区的数据是分开的，所有系统崩溃以后重装系统并不会影响到数据安全（被覆盖），这样数据恢复起来就比较容易了。&lt;/li&gt;
+  &lt;li&gt;一是为了提高管理效率，所有东西如果都放在一个分区，OS管理其起来效率比较低，因为每次要检索的东西太多。&lt;/li&gt;
+  &lt;li&gt;二是提升数据安全性，因为每个分区的数据是分开的，所有系统崩溃以后重装系统并不会影响到数据安全（被覆盖），这样数据恢复起来就比较容易了。在Windows中可能比较直接，而在Linux中需要自己去挂载和管理。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;下面我们简单看下硬盘的分区结构:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;localhost:img/1571976109038.png&quot; alt=&quot;1571976109038&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://jackdu.cn/img/1571976109038.png&quot; alt=&quot;1571976109038&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;硬盘主引导扇区 = 硬盘主引导记录（MBR）+ 硬盘分区表（DPT），一共是512个字节，其中MBR是446，分区表一共64字节，然后是2个字节的结束标志。引导扇区存储在硬盘的0头0道1扇区，也就是Boot Sector。操作系统在启动时通过BIOS程序把Boot Sector读入内存，然后执行其中MBR，这个时候BIOS就把启动交给MBR控制；MBR作用是在4个分区表中搜索标志为活动的分区，找到后把活动分区的第一个扇区读入内存，然后开始执行它，运行特定系统的启动程序(LILO,GRUB,NT Loader);这个时候启动的启动就交给了操作系统的引导程序来控制了。然后操作系统进行一系列的初始化，最后把系统交给系统内核进行管理。&lt;/p&gt;
 
@@ -27,7 +191,7 @@
 
 &lt;p&gt;Linux系统中的分区和Windows有很大的区别，对于使Dos或Windows系统来说，有几个分区就有几个驱动器，并且每个分区都会获得一个字母标识符（A,B,C,D），然后就可以选用这个字母来指定在这个分区上的文件和目录，它们的文件结构都是独立的。然而对 Linux用户来说无论有几个分区，都得分给目录使用，它归根结底就只有一个根目录，一个独立且唯一的文件结构。 Linux中每个分区都是用来组成整个文件系统的一部分，因为它采用了一种叫“挂载点”的处理方法，它的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来。这时要载入的一个分区就在Linux的存储空间的某个目录下获得。在网上找到了一张很形象的图：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;img/1571974449215.png&quot; alt=&quot;1571974449215&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://jackdu.cn/img/1571974449215.png&quot; alt=&quot;1571974449215&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;从上图可以更好的理解, 我们安装系统的时候已经把分区1挂载到 / 目录下了。而这个时候没有挂载其他任何分区,所以/ 目录下的所有其他目录都在这个分区下,也就是说,我在任何目录下读写操作实际都是操作的这个1号分区。如果我们想使用其他分区，就必须把这个分区挂载到一个目录下，这个目录可以是已经存在的目录，比如/home,也可以是我们自己建立的目录,比如/oracle。&lt;strong&gt;当然有些目录比如/lib, /dev, /etc, /usr这些都不能挂载其他分区,因为他们都存放着系统需要的文件，一旦被挂载其他分区，那没OS就无法找到所需的文件，系统就会崩溃&lt;/strong&gt;。比如我们把分区2挂载到/usr/X11目录下时,系统就无法通过X11目录找到分区1上的文件,这个时候系统图形界面就无法使用了。 虽然文件还在硬盘上。但目录 — 分区 是通过挂载吧他们联系起来。你更换了分区，也就破坏了联系，就无法在找到之前的文件了。我们在看分区5和分区6，我们把它挂载到/home/ftp 和 /oracle目录下,这个时候我们在操作这2个目录是,就是操作对用的分区。而WINDOWS就没这么复杂,她不是采用树形的结构,每个分区对应一个盘符,一旦建立映射关系就无法在修改。实际上，LINUX的每个挂载了分区的目录就相当于WINDOWS系统中的盘符，比如上面的，/home/ftp 和 /oracle目录我们就可以把她看做一个盘符和一个分区关联。&lt;/p&gt;
 
