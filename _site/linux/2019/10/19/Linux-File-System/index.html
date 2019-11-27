@@ -119,12 +119,12 @@
 <meta property="og:site_name" content="西红柿炒番茄">
 <meta property="og:description" content="在上一篇Blog中我简单的探究了一下Linux中Swap的一些配置对Linux系统性能的影响，这篇文章来谈一下Linux系统下磁盘分区与挂载的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jackdu.cn/img/1571976109038.png">
-<meta property="og:image" content="http://jackdu.cn/img/1571974449215.png">
+<meta property="og:image" content="http://image.jackdu.cn/1571976109038.png">
+<meta property="og:image" content="http://image.jackdu.cn/1571974449215.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一点关于Linux文件系统的思考">
 <meta name="twitter:description" content="在上一篇Blog中我简单的探究了一下Linux中Swap的一些配置对Linux系统性能的影响，这篇文章来谈一下Linux系统下磁盘分区与挂载的问题。">
-<meta name="twitter:image" content="http://jackdu.cn/img/1571976109038.png">
+<meta name="twitter:image" content="http://image.jackdu.cn/1571976109038.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -465,7 +465,7 @@
 
 <p>下面我们简单看下硬盘的分区结构:</p>
 
-<p><img src="http://jackdu.cn/img/1571976109038.png" alt="1571976109038" /></p>
+<p><img src="http://image.jackdu.cn/1571976109038.png" alt="1571976109038" /></p>
 
 <p>硬盘主引导扇区 = 硬盘主引导记录（MBR）+ 硬盘分区表（DPT），一共是512个字节，其中MBR是446，分区表一共64字节，然后是2个字节的结束标志。引导扇区存储在硬盘的0头0道1扇区，也就是Boot Sector。操作系统在启动时通过BIOS程序把Boot Sector读入内存，然后执行其中MBR，这个时候BIOS就把启动交给MBR控制；MBR作用是在4个分区表中搜索标志为活动的分区，找到后把活动分区的第一个扇区读入内存，然后开始执行它，运行特定系统的启动程序(LILO,GRUB,NT Loader);这个时候启动的启动就交给了操作系统的引导程序来控制了。然后操作系统进行一系列的初始化，最后把系统交给系统内核进行管理。</p>
 
@@ -481,7 +481,7 @@
 
 <p>Linux系统中的分区和Windows有很大的区别，对于使Dos或Windows系统来说，有几个分区就有几个驱动器，并且每个分区都会获得一个字母标识符（A,B,C,D），然后就可以选用这个字母来指定在这个分区上的文件和目录，它们的文件结构都是独立的。然而对 Linux用户来说无论有几个分区，都得分给目录使用，它归根结底就只有一个根目录，一个独立且唯一的文件结构。 Linux中每个分区都是用来组成整个文件系统的一部分，因为它采用了一种叫“挂载点”的处理方法，它的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来。这时要载入的一个分区就在Linux的存储空间的某个目录下获得。在网上找到了一张很形象的图：</p>
 
-<p><img src="http://jackdu.cn/img/1571974449215.png" alt="1571974449215" /></p>
+<p><img src="http://image.jackdu.cn/1571974449215.png" alt="1571974449215" /></p>
 
 <p>从上图可以更好的理解, 我们安装系统的时候已经把分区1挂载到 / 目录下了。而这个时候没有挂载其他任何分区,所以/ 目录下的所有其他目录都在这个分区下,也就是说,我在任何目录下读写操作实际都是操作的这个1号分区。如果我们想使用其他分区，就必须把这个分区挂载到一个目录下，这个目录可以是已经存在的目录，比如/home,也可以是我们自己建立的目录,比如/oracle。<strong>当然有些目录比如/lib, /dev, /etc, /usr这些都不能挂载其他分区,因为他们都存放着系统需要的文件，一旦被挂载其他分区，那没OS就无法找到所需的文件，系统就会崩溃</strong>。比如我们把分区2挂载到/usr/X11目录下时,系统就无法通过X11目录找到分区1上的文件,这个时候系统图形界面就无法使用了。 虽然文件还在硬盘上。但目录 — 分区 是通过挂载吧他们联系起来。你更换了分区，也就破坏了联系，就无法在找到之前的文件了。我们在看分区5和分区6，我们把它挂载到/home/ftp 和 /oracle目录下,这个时候我们在操作这2个目录是,就是操作对用的分区。而WINDOWS就没这么复杂,她不是采用树形的结构,每个分区对应一个盘符,一旦建立映射关系就无法在修改。实际上，LINUX的每个挂载了分区的目录就相当于WINDOWS系统中的盘符，比如上面的，/home/ftp 和 /oracle目录我们就可以把她看做一个盘符和一个分区关联。</p>
 
@@ -536,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/19/Tpcc/" rel="prev" title="Tpcc">
-                Tpcc <i class="fa fa-chevron-right"></i>
+              <a href="/linux/2019/10/12/%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8ELinux-swap%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="一点关于Swap配置对性能影响的思考">
+                一点关于Swap配置对性能影响的思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -619,7 +619,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -630,7 +630,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -641,7 +641,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
