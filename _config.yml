@@ -93,7 +93,7 @@ rss: false
 authoricon: heart
 
 # Footer `powered-by` and `theme-info` copyright
-copyright: true
+copyright: false
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -436,8 +436,8 @@ changyan:
 # Support for gitalk comments system.
 gitalk:
   enable: false
-  clientID: # 54730ddf7b9420460c03
-  clientSecret: # c05684701b25ff1c19ea0c01ce4d80c125e0707d
+  clientID: 9ada680003551d25e2e0
+  clientSecret: 8c071c4f50f611f4196cbebfd89b538e44c43363
   repo: # colingpt.github.io
   owner: # colingpt
   admin: # colingpt
@@ -475,15 +475,28 @@ gitalk:
 # See https://azure.microsoft.com/en-us/services/application-insights/
 # application_insights:
 
+# valine_comment
+valine_comment:
+  enable: true
+# app_id
+  leancloud_appid: l8xLCgdh8Nier0YAtIC3bSH8-gzGzoHsz
+# app_key
+  leancloud_appkey: pKb38LL6IJwvdVDhC5ANTvgl
+# placeholde
+  placeholder: Write your comments.....
+  guest_info: nick,mail # 回复要填写的信息
+  pageSize: 10 # 评论列表分页，每页条数
+  visitor: false # 文章访问量统计 
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
-  ua_enable: true
+  ua_enable: false
   admin_enable: false
   user_id: 0
   #admin_nickname: Author
-
 
 # Facebook SDK Support.
 # https://github.com/iissnan/hexo-theme-next/pull/410
@@ -518,6 +531,9 @@ rating:
   enable: false
   id:     #<app_id>
   color:  fc6423
+
+
+
 
 
 # Show number of visitors to each article.
