@@ -1,6 +1,6 @@
 ---
 title: 一点关于Linux文件系统的思考
-description:  在上一篇Blog中我简单的探究了一下Linux中Swap的一些配置对Linux系统性能的影响，这篇文章来谈一下Linux系统下磁盘分区与挂载的问题。
+description:
 date:  Sat, 19 Oct 2019 23:54:18
 categories: 
 - Linux
