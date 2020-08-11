@@ -3,5 +3,16 @@ layout: page
 type: about
 ---
 
-Building...
 
+
+
+
+
+
+About Me
+
+
+
+
+
+### Email： me@jackdu.cn
