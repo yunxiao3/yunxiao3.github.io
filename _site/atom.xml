@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-02-11T15:32:02+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">西红柿炒番茄</title><subtitle>We are not at rest; we are on a journey.</subtitle><author><name>Yunxiao</name></author><entry><title type="html">《时间的朋友:20岁生日感言》</title><link href="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/" rel="alternate" type="text/html" title="《时间的朋友:20岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20</id><content type="html" xml:base="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/">&lt;p&gt;​        20岁有太多太多话想说，有太多太多故事想讲，有太多太多人想感谢，有太多太多感慨,有太多太多幸运。20年，周围的人换了一批又一批，经历的事一件又一件，初识世间冷暖，人间百态。20年，嘴角的笑起起落落，眉间的愁浓浓淡淡，浅尝聚散离合，悲欢苦乐。20年，太长太短太快太慢。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-05T06:36:38+08:00</updated><id>http://localhost:4000/atom.xml</id><title type="html">西红柿炒番茄</title><subtitle>We are not at rest; we are on a journey.</subtitle><author><name>Yunxiao</name></author><entry><title type="html">《分布式系统的一致性》</title><link href="http://localhost:4000/distributed%20system/2020/03/30/ConsistensusAlgorithm/" rel="alternate" type="text/html" title="《分布式系统的一致性》" /><published>2020-03-30T22:27:12+08:00</published><updated>2020-03-30T22:27:12+08:00</updated><id>http://localhost:4000/distributed%20system/2020/03/30/ConsistensusAlgorithm</id><content type="html" xml:base="http://localhost:4000/distributed%20system/2020/03/30/ConsistensusAlgorithm/">&lt;h4 id=&quot;1-一致性的分类&quot;&gt;1. 一致性的分类&lt;/h4&gt;
+
+&lt;p&gt;一般来讲，分布式系统中的一致性（strong consistency）按照对一致性要求的不同，主要分为，&lt;strong&gt;严格一致性，强一致性，弱一致性和最终一致性&lt;/strong&gt;这四大类。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;img/1585578482124.png&quot; alt=&quot;1585578482124&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2-严格一致性&quot;&gt;2. 严格一致性&lt;/h4&gt;
+
+&lt;p&gt;在分布式系统中，有一种理想状态的“严格一致性”。严格一致性的标准是，对于数据项x的任何读操作将返回最近一次对x进行的写操作的结果所对应的值。严格一致性中存在的在分布式系统中，有一种理想状态的“严格一致性”。&lt;/p&gt;
+
+&lt;p&gt;严格一致性的标准是，对于数据项x的任何读操作将返回最近一次对x进行的写操作的结果所对应的值。&lt;/p&gt;
+
+&lt;p&gt;严格一致性中存在的问题是它依赖于绝对的全局时间。对于所有的进程来说，所有写操作都是瞬间可见的，系统维持着一个绝对的全局时间顺序。如果一个数据项被改变了，那么无论数据项改变之后多久执行读操作，无论哪些进程执行读操作，无论这些进程的位置如何，所有在该数据项上执行的后续读操作都将得到新数值。&lt;/p&gt;
+
+&lt;p&gt;严格一致性，是在系统不发生任何故障，而且所有节点之间的通信无需任何时间这种理想的条件下，才能达到。这个时候整个系统其实就等价于一台机器了。在现实中，是不可能达到的。&lt;/p&gt;
+
+&lt;p&gt;实际上，&lt;strong&gt;越强的一致性要求往往会造成越弱的处理性能，以及越差的可扩展性。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;3强一致性&quot;&gt;3.强一致性&lt;/h4&gt;
+
+&lt;p&gt;当满足强一致性时，满足如下要求：&lt;/p&gt;
+
+&lt;p&gt;当分布式系统中更新操作完成之后，任何多个进程或线程，访问系统都会获得最新的值。&lt;/p&gt;
+
+&lt;p&gt;一般来讲，强一致性（strong consistency）主要包括下面两类&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;顺序一致性&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;线性一致性&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;顺序一致性&lt;/strong&gt;是指任何执行结果都是相同的，就好像所有进程对数据存储的读、写操作是按某种序列顺序执行的，并且每个进程的操作按照程序所指定的顺序出现在这个序列中 。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;顺序一致性的介绍比较抽象，这里举一个例子来说明。
+例子摘自：&lt;strong&gt;并行编程——内存模型之顺序一致性&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;假设我们有两个线程（线程1和线程2）分别运行在两个CPU上，有两个初始值为0的全局共享变量x和y，两个线程分别执行下面两条指令：
+&lt;strong&gt;初始条件： x = y = 0;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-4a1e440693eabd7365fca8e720eb9f22_720w.jpg&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;因为多线程程序是交错执行的，所以程序可能有如下几种执行顺序：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-ee9523853159a2e0ce7fe9b0bf10f45e_720w.jpg&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;当然上面三种情况并没包括所有可能的执行顺序，但是它们已经包括所有可能出现的结果了，所以我们只举上面三个例子。我们注意到这个程序只可能出现上面三种结果，但是不可能出现r1==0 and r2==0的情况。
+&lt;strong&gt;所谓的顺序一致性，&lt;/strong&gt;其实就是规定了一下两个条件：
+&lt;strong&gt;（1）每个线程内部的指令都是按照程序规定的顺序（program order）执行的（单个线程的视角）&lt;/strong&gt;
+&lt;strong&gt;（2）线程执行的交错顺序可以是任意的，但是所有线程所看见的整个程序的总体执行顺序都是一样的（整个程序的视角）&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;第一点很容易理解，就是说线程1里面的两条语句一定在该线程中一定是x=1先执行，r1=y后执行。
+第二点就是说线程1和线程2所看见的整个程序的执行顺序都是一样的。
+举例子就是假设线程1看见整个程序的执行顺序是我们上面例子中的Execution 1，那么线程2看见的整个程序的执行顺序也是Execution 1，不能是Execution 2或者Execution 3。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;总结下来，&lt;strong&gt;顺序一致性，要求所有线程所见的整个程序的总体执行顺序是一样的。也就是说，顺序一致性保证的是对一系列地址访问的一致性。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;顺序一致性实际上&lt;strong&gt;限制了各进程内指令的偏序关系&lt;/strong&gt;，但不在进程间按照物理时间进行全局排序&lt;strong&gt;。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;线性一致性&lt;/strong&gt;假设操作具有一个&lt;strong&gt;全局有效时钟的时间戳&lt;/strong&gt;，但是这个时钟仅具有有限的精确度。要求时间戳在前的进程先执行。线性化是&lt;strong&gt;根据一系列同步时钟&lt;/strong&gt;确定序列顺序的 。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;弱一致性&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;弱一致性&lt;/strong&gt;是指系统并不保证后续进程或线程的访问都会返回最新的更新的值。系统在数据成功吸入之后，不承诺立即可以读到最新写入的值，也不会具体承诺多久读到。但是会尽可能保证在某个时间级别（秒级）之后。可以让数据达到一致性状态。&lt;strong&gt;也就是说&lt;/strong&gt;，如果能容忍后续的部分或者全部访问不到，则是弱一致性。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;最终一致性&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;最终一致性&lt;/strong&gt;是弱一致性的特定形式。系统保证在没有后续更新的前提下，系统最终返回上一次更新操作的值。 &lt;strong&gt;也就是说&lt;/strong&gt;，如果经过一段时间后要求能访问到更新后的数据，则是最终一致性。&lt;/p&gt;
+
+&lt;p&gt;在最终一致性的要求下，如果没有故障发生，不一致窗口的时间主要受通信延迟，系统负载和复制副本的个数影响。DNS是一个典型的最终一致性系统。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/80/v2-5d0d89a60bc164a25470d0eb1345200f_720w.jpg&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="Distributed System" /><summary type="html">1. 一致性的分类</summary></entry><entry><title type="html">《时间的朋友:20岁生日感言》</title><link href="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/" rel="alternate" type="text/html" title="《时间的朋友:20岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20</id><content type="html" xml:base="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/">&lt;p&gt;​        20岁有太多太多话想说，有太多太多故事想讲，有太多太多人想感谢，有太多太多感慨,有太多太多幸运。20年，周围的人换了一批又一批，经历的事一件又一件，初识世间冷暖，人间百态。20年，嘴角的笑起起落落，眉间的愁浓浓淡淡，浅尝聚散离合，悲欢苦乐。20年，太长太短太快太慢。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujjQs2hgLqiaVcLp6ysmGzWwvticcibZufcw9iad6IWtUDZVcQUb3ZNL5wQ/640?wx_fmt=jpeg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 
@@ -26,7 +110,7 @@
 
 &lt;p&gt;历尽世间劫，了却心中愿。&lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_png/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujxrmbSMXjWjFaMLlX7hGf6yuiaZ0Ose0JVibcCGW7n94xwBQXwSKzic7w/640?wx_fmt=png&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;最后祝所有关注我公众号的亲朋师友幸福喜乐，并祝元宵节愉快。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="时间的朋友" /><summary type="html">​ 20岁有太多太多话想说，有太多太多故事想讲，有太多太多人想感谢，有太多太多感慨,有太多太多幸运。20年，周围的人换了一批又一批，经历的事一件又一件，初识世间冷暖，人间百态。20年，嘴角的笑起起落落，眉间的愁浓浓淡淡，浅尝聚散离合，悲欢苦乐。20年，太长太短太快太慢。</summary></entry><entry><title type="html">《时间的朋友:21岁生日感言》</title><link href="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/" rel="alternate" type="text/html" title="《时间的朋友:21岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21</id><content type="html" xml:base="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/">&lt;p&gt;​      今年过年翻看去年的推文感觉还挺有意思的，于是想到罗胖发的那个宏愿：办20场《时间的朋友》跨年演讲，我自然是没有他那么胖，但今天也发下了一个宏愿：从20岁到30岁写下十篇《时间的朋友》生日感言：一来可以借此机会让大家批评我幼稚的想法，成熟我的思想。二来可以作为自己的年终大考，敦促我前进，三来还可以见证自己成长的过程。思前想后真是感觉百利而无一害，于是便决定每年元宵节推送一篇《时间的朋友》生日感言，和大家分享与进步，同时也让关注我的粉丝每年好有个期待（哈哈）。接下的是我的21岁生日感言，也是这十篇中的倒数第九篇。&lt;/p&gt;
+&lt;p&gt;最后祝所有关注我公众号的亲朋师友幸福喜乐，并祝元宵节愉快。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="时间的朋友" /><summary type="html">​ 20岁有太多太多话想说，有太多太多故事想讲，有太多太多人想感谢，有太多太多感慨,有太多太多幸运。20年，周围的人换了一批又一批，经历的事一件又一件，初识世间冷暖，人间百态。20年，嘴角的笑起起落落，眉间的愁浓浓淡淡，浅尝聚散离合，悲欢苦乐。20年，太长太短太快太慢。</summary></entry><entry><title type="html">《时间的朋友:21岁生日感言》</title><link href="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/" rel="alternate" type="text/html" title="《时间的朋友:21岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21</id><content type="html" xml:base="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/">&lt;p&gt;​      今年过年翻看去年的推文感觉还挺有意思的，于是想到罗胖发的那个宏愿：办20场《时间的朋友》跨年演讲，我自然是没有他那么胖，但今天也发下了一个宏愿：从20岁到30岁写下十篇《时间的朋友》生日感言：一来可以借此机会让大家批评我幼稚的想法，成熟我的思想。二来可以作为自己的年终大考，敦促我前进，三来还可以见证自己成长的过程。思前想后真是感觉百利而无一害，于是便决定每年元宵节推送一篇《时间的朋友》生日感言，和大家分享与进步，同时也让关注我的粉丝每年好有个期待（哈哈）。接下的是我的21岁生日感言，也是这十篇中的倒数第九篇。&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -70,7 +154,7 @@
 
 &lt;p&gt;&lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSiciaLGHiazRU1FdeePQhyucvlTCJrUeD0jhpJKkxtfO9Lv3DAZ6T2YlOnL456s2NjAQg2AX2RLswNheQ/640?wx_fmt=jpeg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;最后附上一张生日照（虽然美颜美的不像话，嘻嘻），并赶在元宵节的最后一点时间，祝愿各位亲朋师友平安喜乐，并祝元宵节快乐。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="时间的朋友" /><summary type="html">​ 今年过年翻看去年的推文感觉还挺有意思的，于是想到罗胖发的那个宏愿：办20场《时间的朋友》跨年演讲，我自然是没有他那么胖，但今天也发下了一个宏愿：从20岁到30岁写下十篇《时间的朋友》生日感言：一来可以借此机会让大家批评我幼稚的想法，成熟我的思想。二来可以作为自己的年终大考，敦促我前进，三来还可以见证自己成长的过程。思前想后真是感觉百利而无一害，于是便决定每年元宵节推送一篇《时间的朋友》生日感言，和大家分享与进步，同时也让关注我的粉丝每年好有个期待（哈哈）。接下的是我的21岁生日感言，也是这十篇中的倒数第九篇。</summary></entry><entry><title type="html">《时间的朋友:22岁生日感言》</title><link href="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/" rel="alternate" type="text/html" title="《时间的朋友:22岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22</id><content type="html" xml:base="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/">&lt;p&gt;​    如果不是Y提醒我别忘记更新今年的推送，我可能已经悄悄的把这件事给忘了。因为还没开始写这篇推送的时候，我就已经意识到去年吹的牛实在有点太大了。一来自己已经到了需要翻看照片才能唤醒稍许回忆的年纪，二来随着年龄的增长，自己其实不应该再拘泥自己的情绪与故事了，更何况是将他们讲述出去。但考虑到去年说的话已经收不回来了，而自己离10W+可能也只差临门一脚。所以还是决定抽出些时间来记录一下过去一年的所思所想，并借此机会把去年的愿望稍稍修改一下，改成“少吹牛，多做事”。接下是我的22岁生日感言，也是这十篇中的倒数第八篇。&lt;/p&gt;
+&lt;p&gt;最后附上一张生日照（虽然美颜美的不像话，嘻嘻），并赶在元宵节的最后一点时间，祝愿各位亲朋师友平安喜乐，并祝元宵节快乐。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="时间的朋友" /><summary type="html">​ 今年过年翻看去年的推文感觉还挺有意思的，于是想到罗胖发的那个宏愿：办20场《时间的朋友》跨年演讲，我自然是没有他那么胖，但今天也发下了一个宏愿：从20岁到30岁写下十篇《时间的朋友》生日感言：一来可以借此机会让大家批评我幼稚的想法，成熟我的思想。二来可以作为自己的年终大考，敦促我前进，三来还可以见证自己成长的过程。思前想后真是感觉百利而无一害，于是便决定每年元宵节推送一篇《时间的朋友》生日感言，和大家分享与进步，同时也让关注我的粉丝每年好有个期待（哈哈）。接下的是我的21岁生日感言，也是这十篇中的倒数第九篇。</summary></entry><entry><title type="html">《时间的朋友:22岁生日感言》</title><link href="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/" rel="alternate" type="text/html" title="《时间的朋友:22岁生日感言》" /><published>2020-02-11T15:23:49+08:00</published><updated>2020-02-11T15:23:49+08:00</updated><id>http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22</id><content type="html" xml:base="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/">&lt;p&gt;​    如果不是Y提醒我别忘记更新今年的推送，我可能已经悄悄的把这件事给忘了。因为还没开始写这篇推送的时候，我就已经意识到去年吹的牛实在有点太大了。一来自己已经到了需要翻看照片才能唤醒稍许回忆的年纪，二来随着年龄的增长，自己其实不应该再拘泥自己的情绪与故事了，更何况是将他们讲述出去。但考虑到去年说的话已经收不回来了，而自己离10W+可能也只差临门一脚。所以还是决定抽出些时间来记录一下过去一年的所思所想，并借此机会把去年的愿望稍稍修改一下，改成“少吹牛，多做事”。接下是我的22岁生日感言，也是这十篇中的倒数第八篇。&lt;/p&gt;
 
 &lt;p&gt;​    &lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrXnloeQaoqSiaLmCgfaZ87IUmRho9w5woSw10jMgiarObbCkSOf5DuDww/640?wx_fmt=jpeg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
 
@@ -496,4 +580,4 @@ T（1）= 0
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;由于使用了随机选取主元的方式，所以随机快排的时间复杂度和输入数据的顺序便不相关了，使得他趋避免了最坏的情况而更加近于平均时间复杂度O(nlogn)使得快排的性能得到了保障，避免了出现性能极差的情况。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="读书笔记" /><category term="《算法导论》" /><summary type="html">最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。</summary></entry><entry><title type="html">我的保研之旅</title><link href="http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85/" rel="alternate" type="text/html" title="我的保研之旅" /><published>2019-10-26T16:36:03+08:00</published><updated>2019-10-26T16:36:03+08:00</updated><id>http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85</id><content type="html" xml:base="http://localhost:4000/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85/">&lt;p&gt;去年这个时候在网上看到过很多人的保研之旅博客，那个时候觉得非常羡慕。但当自己保完研以后觉得保研其实也没什么，无非是走了一条暂时与大多数人不太一样的路罢了，以后能走多远还是看自身的造化。因此之前完全没有写这篇Blog的打算，但这几天想给自己的Blog吸引一些流量。没办为了恰饭，只能搞一些惊悚如：《我是如何以3.19的绩点和478的四级拿到南开，哈深，华科，电科，中山，浙大等学校的计算机类的offer的》的标题，标题党的标题果然是又臭有又长。&lt;/p&gt;</content><author><name>Yunxiao</name></author><summary type="html">去年这个时候在网上看到过很多人的保研之旅博客，那个时候觉得非常羡慕。但当自己保完研以后觉得保研其实也没什么，无非是走了一条暂时与大多数人不太一样的路罢了，以后能走多远还是看自身的造化。因此之前完全没有写这篇Blog的打算，但这几天想给自己的Blog吸引一些流量。没办为了恰饭，只能搞一些惊悚如：《我是如何以3.19的绩点和478的四级拿到南开，哈深，华科，电科，中山，浙大等学校的计算机类的offer的》的标题，标题党的标题果然是又臭有又长。</summary></entry></feed>
+&lt;p&gt;由于使用了随机选取主元的方式，所以随机快排的时间复杂度和输入数据的顺序便不相关了，使得他趋避免了最坏的情况而更加近于平均时间复杂度O(nlogn)使得快排的性能得到了保障，避免了出现性能极差的情况。&lt;/p&gt;</content><author><name>Yunxiao</name></author><category term="读书笔记" /><category term="《算法导论》" /><summary type="html">最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。</summary></entry></feed>

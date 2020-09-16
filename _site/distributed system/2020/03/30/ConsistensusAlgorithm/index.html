@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="时间的朋友," />
+  <meta name="keywords" content="Distributed System," />
 
 
 
@@ -109,24 +109,22 @@
 
 
 
-<meta name="description" content="既然不能战胜时间，不如和他成为朋友：写在22岁的边上。">
-<meta name="keywords" content="时间的朋友">
+<meta name="description" content="严格一致性，强一致性，弱一致性和最终一致性的总结。">
+<meta name="keywords" content="Distributed System">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《时间的朋友:22岁生日感言》">
-<meta property="og:url" content="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/">
+<meta property="og:title" content="《分布式系统的一致性》">
+<meta property="og:url" content="http://localhost:4000/distributed%20system/2020/03/30/ConsistensusAlgorithm/">
 <meta property="og:site_name" content="西红柿炒番茄">
-<meta property="og:description" content="既然不能战胜时间，不如和他成为朋友：写在22岁的边上。">
+<meta property="og:description" content="严格一致性，强一致性，弱一致性和最终一致性的总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrXnloeQaoqSiaLmCgfaZ87IUmRho9w5woSw10jMgiarObbCkSOf5DuDww/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrn977K0yVSqpUIzqublUwX9zpqPwe7slWCsicFtia7tIbbqEiape6icSfDQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrSgrPvG6kZzPOZrcoK82jDBAMtWDdELOVPtLdf2H56qSfbOApf9JGxA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjutsGQaGNSQxx8olGCtETQ16EhAQnWnhQPSVw7mTtY7diccibT5HHoIt0qVRCdbROTNuich2w8XeOZg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrLCIyywd95KnVTmVW4UURygtvXExUKV2lrDdu0KKaFUhR0ibBI1v5APw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjutsGQaGNSQxx8olGCtETQqUMZKHMS74nibpiayxlyyKcfTNEC9hbf9IcsO6ddSiaw8kaqSZ88uvwuw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="img/1585578482124.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4a1e440693eabd7365fca8e720eb9f22_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-ee9523853159a2e0ce7fe9b0bf10f45e_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-5d0d89a60bc164a25470d0eb1345200f_720w.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《时间的朋友:22岁生日感言》">
-<meta name="twitter:description" content="既然不能战胜时间，不如和他成为朋友：写在22岁的边上。">
-<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrXnloeQaoqSiaLmCgfaZ87IUmRho9w5woSw10jMgiarObbCkSOf5DuDww/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta name="twitter:title" content="《分布式系统的一致性》">
+<meta name="twitter:description" content="严格一致性，强一致性，弱一致性和最终一致性的总结。">
+<meta name="twitter:image" content="img/1585578482124.png">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -159,7 +157,7 @@
 
 
 
-  <title>《时间的朋友:22岁生日感言》 | 西红柿炒番茄</title>
+  <title>《分布式系统的一致性》 | 西红柿炒番茄</title>
   
 
 
@@ -341,7 +339,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/distributed%20system/2020/03/30/ConsistensusAlgorithm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yunxiao">
@@ -361,7 +359,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            《时间的朋友:22岁生日感言》
+            《分布式系统的一致性》
           
         </h1>
         
@@ -375,8 +373,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T15:23:49+08:00">
-                2020-02-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T22:27:12+08:00">
+                2020-03-30
               </time>
             
 
@@ -386,6 +384,29 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/Distributed%20System" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -393,7 +414,7 @@
 
           
           
-             <span id="/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/" class="leancloud_visitors" data-flag-title="《时间的朋友:22岁生日感言》">
+             <span id="/distributed%20system/2020/03/30/ConsistensusAlgorithm/" class="leancloud_visitors" data-flag-title="《分布式系统的一致性》">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,7 +433,7 @@
           
             
                 <div class="post-description">
-                    既然不能战胜时间，不如和他成为朋友：写在22岁的边上。
+                    严格一致性，强一致性，弱一致性和最终一致性的总结。
                 </div>
             
           
@@ -442,27 +463,91 @@
 
 
 
-  <p>​    如果不是Y提醒我别忘记更新今年的推送，我可能已经悄悄的把这件事给忘了。因为还没开始写这篇推送的时候，我就已经意识到去年吹的牛实在有点太大了。一来自己已经到了需要翻看照片才能唤醒稍许回忆的年纪，二来随着年龄的增长，自己其实不应该再拘泥自己的情绪与故事了，更何况是将他们讲述出去。但考虑到去年说的话已经收不回来了，而自己离10W+可能也只差临门一脚。所以还是决定抽出些时间来记录一下过去一年的所思所想，并借此机会把去年的愿望稍稍修改一下，改成“少吹牛，多做事”。接下是我的22岁生日感言，也是这十篇中的倒数第八篇。</p>
+  <h4 id="1-一致性的分类">1. 一致性的分类</h4>
 
-<p>​    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrXnloeQaoqSiaLmCgfaZ87IUmRho9w5woSw10jMgiarObbCkSOf5DuDww/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<p>一般来讲，分布式系统中的一致性（strong consistency）按照对一致性要求的不同，主要分为，<strong>严格一致性，强一致性，弱一致性和最终一致性</strong>这四大类。</p>
 
-<p>​    如果说20岁只有一半的时间在泥土中挣扎的话，那么整个21岁基本上都可以算是在泥巴中爬了。特别是上半年的那种痛苦感觉甚至让我的大脑产生了应激反应，使我遗失了大半年的记忆。现在唯一还有点印象的就是：三四月份为了赶deadline，半夜做不出实验抬头发现周围早已空无一人的无助；以及5月20号在西安候机时，别人拿着玫瑰而自己却手捧实验报告的场景。虽然后来论文改成了poster，实验分数也不高，但我却离和Z吹牛时立下的小目标越来越近：大学毕业的时能说上一句“自己很幸运大学期间没谈恋爱”。现在看来其实只要一个人运气足够的好，随便立一个小目标都是可以实现一半的（比如没谈恋爱）。    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrn977K0yVSqpUIzqublUwX9zpqPwe7slWCsicFtia7tIbbqEiape6icSfDQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<p><img src="img/1585578482124.png" alt="1585578482124" /></p>
 
-<p>而从西安回来以后不久，很多学校的夏令营就已经开始发offer了。当周围大佬将自己的offer排满一个月准备开始全国各地旅游的时，我却只能躲在角落里瑟瑟发抖（菜鸡的必然命运），并且陷入了很长一段时间的迷失与焦虑。其实现在想想参加夏令营还是挺有意思的。特别是在成都的那段闲适的时光让我至今回味。夏令营结束以后，我便按照计划一个人横渡了赣江。虽然对我来说这确实是充满风险的，但在我看来这些风险更多是源于自己对未知的恐惧。<img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrSgrPvG6kZzPOZrcoK82jDBAMtWDdELOVPtLdf2H56qSfbOApf9JGxA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<h4 id="2-严格一致性">2. 严格一致性</h4>
 
-<p>​    如果说在赣江里游泳让自己的生命承担一些风险的话，那么八月底放弃G老师留给我的名额（在此感谢所有老师），则是让自己的未来承担了一点风险（还是对未知的恐惧)。即使现在看来当时去南开也是一个非常好的选择，但自己却在没有六级成绩（意味着很多学校的报名要求都达不到）和没有更好选择的情况下放弃了这个机会。虽然后面的结果甚至比我预计的要好，但站在当时来看放弃这个机会，除了将自己再一次推向未知的风浪当中并没有什么好处（唯一好处就是可以报名参加浙软的面试，而当时招生群里有近1000人）。</p>
+<p>在分布式系统中，有一种理想状态的“严格一致性”。严格一致性的标准是，对于数据项x的任何读操作将返回最近一次对x进行的写操作的结果所对应的值。严格一致性中存在的在分布式系统中，有一种理想状态的“严格一致性”。</p>
 
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjutsGQaGNSQxx8olGCtETQ16EhAQnWnhQPSVw7mTtY7diccibT5HHoIt0qVRCdbROTNuich2w8XeOZg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<p>严格一致性的标准是，对于数据项x的任何读操作将返回最近一次对x进行的写操作的结果所对应的值。</p>
 
-<p>当然后面因为种种运气的加持，使得自己在杭州的时候已经处于一种旅游状态了。所以面试结束后便一个人去灵隐寺转了转，或许秋风和古寺往往能引起人新的思绪。在那些斑驳的石像面前，我突然觉得，虽然英雄可以逐鹿中原快意江湖，但作为和我一样的普通人每年能够踏实的感叹一声：又是一年秋风起，亦何尝不是一种乐趣。也是从那个时候起，自己开始慢慢理解：“人生最大的幸福是求仁得仁，平淡生活也好激烈拼搏也好，所有得到了自己想要生活的人都值得被祝福“这句话的含义。</p>
+<p>严格一致性中存在的问题是它依赖于绝对的全局时间。对于所有的进程来说，所有写操作都是瞬间可见的，系统维持着一个绝对的全局时间顺序。如果一个数据项被改变了，那么无论数据项改变之后多久执行读操作，无论哪些进程执行读操作，无论这些进程的位置如何，所有在该数据项上执行的后续读操作都将得到新数值。</p>
 
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjPnCibSuEoUwJAJArK4dGFrLCIyywd95KnVTmVW4UURygtvXExUKV2lrDdu0KKaFUhR0ibBI1v5APw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<p>严格一致性，是在系统不发生任何故障，而且所有节点之间的通信无需任何时间这种理想的条件下，才能达到。这个时候整个系统其实就等价于一台机器了。在现实中，是不可能达到的。</p>
 
-<p>其实在动笔之前自己一直在想：究竟是什么东西让我能用这种相对平稳的心态来写今年《时间的朋友》，动笔以后却发现答案无非“幸运”二字。如果抛开运气的成分，自己在过去的一年做的其实是很糟糕的。虽然之前一直都觉得年轻时多犯些错并不是一件坏事，但我也意识到自己犯错的成本在不断变大了。所以在即将到来的22岁，希望自己能够真正做到“少吹牛，多做事”。</p>
+<p>实际上，<strong>越强的一致性要求往往会造成越弱的处理性能，以及越差的可扩展性。</strong></p>
 
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjutsGQaGNSQxx8olGCtETQqUMZKHMS74nibpiayxlyyKcfTNEC9hbf9IcsO6ddSiaw8kaqSZ88uvwuw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
+<h4 id="3强一致性">3.强一致性</h4>
 
-<p>​    最后按照惯例附上一张自己22岁的生日照片（感觉美颜不是很成功，哈哈），并祝愿各位亲朋师友平安喜乐。</p>
+<p>当满足强一致性时，满足如下要求：</p>
+
+<p>当分布式系统中更新操作完成之后，任何多个进程或线程，访问系统都会获得最新的值。</p>
+
+<p>一般来讲，强一致性（strong consistency）主要包括下面两类</p>
+
+<ul>
+  <li>
+    <ul>
+      <li><strong>顺序一致性</strong></li>
+      <li><strong>线性一致性</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>顺序一致性</strong>是指任何执行结果都是相同的，就好像所有进程对数据存储的读、写操作是按某种序列顺序执行的，并且每个进程的操作按照程序所指定的顺序出现在这个序列中 。</p>
+
+<blockquote>
+  <p>顺序一致性的介绍比较抽象，这里举一个例子来说明。
+例子摘自：<strong>并行编程——内存模型之顺序一致性</strong></p>
+
+  <p>假设我们有两个线程（线程1和线程2）分别运行在两个CPU上，有两个初始值为0的全局共享变量x和y，两个线程分别执行下面两条指令：
+<strong>初始条件： x = y = 0;</strong></p>
+</blockquote>
+
+<p><img src="https://pic3.zhimg.com/80/v2-4a1e440693eabd7365fca8e720eb9f22_720w.jpg" alt="img" /></p>
+
+<blockquote>
+  <p>因为多线程程序是交错执行的，所以程序可能有如下几种执行顺序：</p>
+</blockquote>
+
+<p><img src="https://pic3.zhimg.com/80/v2-ee9523853159a2e0ce7fe9b0bf10f45e_720w.jpg" alt="img" /></p>
+
+<blockquote>
+  <p>当然上面三种情况并没包括所有可能的执行顺序，但是它们已经包括所有可能出现的结果了，所以我们只举上面三个例子。我们注意到这个程序只可能出现上面三种结果，但是不可能出现r1==0 and r2==0的情况。
+<strong>所谓的顺序一致性，</strong>其实就是规定了一下两个条件：
+<strong>（1）每个线程内部的指令都是按照程序规定的顺序（program order）执行的（单个线程的视角）</strong>
+<strong>（2）线程执行的交错顺序可以是任意的，但是所有线程所看见的整个程序的总体执行顺序都是一样的（整个程序的视角）</strong></p>
+
+  <p>第一点很容易理解，就是说线程1里面的两条语句一定在该线程中一定是x=1先执行，r1=y后执行。
+第二点就是说线程1和线程2所看见的整个程序的执行顺序都是一样的。
+举例子就是假设线程1看见整个程序的执行顺序是我们上面例子中的Execution 1，那么线程2看见的整个程序的执行顺序也是Execution 1，不能是Execution 2或者Execution 3。</p>
+</blockquote>
+
+<p>总结下来，<strong>顺序一致性，要求所有线程所见的整个程序的总体执行顺序是一样的。也就是说，顺序一致性保证的是对一系列地址访问的一致性。</strong></p>
+
+<p>顺序一致性实际上<strong>限制了各进程内指令的偏序关系</strong>，但不在进程间按照物理时间进行全局排序<strong>。</strong></p>
+
+<p><strong>线性一致性</strong>假设操作具有一个<strong>全局有效时钟的时间戳</strong>，但是这个时钟仅具有有限的精确度。要求时间戳在前的进程先执行。线性化是<strong>根据一系列同步时钟</strong>确定序列顺序的 。</p>
+
+<ul>
+  <li><strong>弱一致性</strong></li>
+</ul>
+
+<p><strong>弱一致性</strong>是指系统并不保证后续进程或线程的访问都会返回最新的更新的值。系统在数据成功吸入之后，不承诺立即可以读到最新写入的值，也不会具体承诺多久读到。但是会尽可能保证在某个时间级别（秒级）之后。可以让数据达到一致性状态。<strong>也就是说</strong>，如果能容忍后续的部分或者全部访问不到，则是弱一致性。</p>
+
+<ul>
+  <li><strong>最终一致性</strong></li>
+</ul>
+
+<p><strong>最终一致性</strong>是弱一致性的特定形式。系统保证在没有后续更新的前提下，系统最终返回上一次更新操作的值。 <strong>也就是说</strong>，如果经过一段时间后要求能访问到更新后的数据，则是最终一致性。</p>
+
+<p>在最终一致性的要求下，如果没有故障发生，不一致窗口的时间主要受通信延迟，系统负载和复制副本的个数影响。DNS是一个典型的最终一致性系统。</p>
+
+<p><img src="https://pic4.zhimg.com/80/v2-5d0d89a60bc164a25470d0eb1345200f_720w.jpg" alt="img" /></p>
 
 
       
@@ -494,7 +579,7 @@
         <div class="post-tags">
           
             
-            <a href="/tag/#/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B" rel="tag"># 时间的朋友</a>
+            <a href="/tag/#/Distributed%20System" rel="tag"># Distributed System</a>
           
         </div>
       
@@ -516,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/" rel="prev" title="《时间的朋友:21岁生日感言》">
-                《时间的朋友:21岁生日感言》 <i class="fa fa-chevron-right"></i>
+              <a href="/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B22/" rel="prev" title="《时间的朋友:22岁生日感言》">
+                《时间的朋友:22岁生日感言》 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,8 +662,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/me.jpeg"
@@ -593,7 +687,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -604,7 +698,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -615,7 +709,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -655,6 +749,34 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-4"> <a class="nav-link" href="#1-一致性的分类"> <span class="nav-number">1</span> <span class="nav-text">1. 一致性的分类</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2-严格一致性"> <span class="nav-number">2</span> <span class="nav-text">2. 严格一致性</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#3强一致性"> <span class="nav-number">3</span> <span class="nav-text">3.强一致性</span> </a> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

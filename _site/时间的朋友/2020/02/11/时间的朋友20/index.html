@@ -83,7 +83,7 @@
 <link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书笔记,《算法导论》," />
+  <meta name="keywords" content="时间的朋友," />
 
 
 
@@ -109,17 +109,25 @@
 
 
 
-<meta name="description" content="最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。">
-<meta name="keywords" content="读书笔记, 《算法导论》">
+<meta name="description" content="既然不能战胜时间，不如和他成为朋友：写在20岁的边上。">
+<meta name="keywords" content="时间的朋友">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对Quick Sort的进一步理解">
-<meta property="og:url" content="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort/">
+<meta property="og:title" content="《时间的朋友:20岁生日感言》">
+<meta property="og:url" content="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/">
 <meta property="og:site_name" content="西红柿炒番茄">
-<meta property="og:description" content="最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。">
+<meta property="og:description" content="既然不能战胜时间，不如和他成为朋友：写在20岁的边上。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujjQs2hgLqiaVcLp6ysmGzWwvticcibZufcw9iad6IWtUDZVcQUb3ZNL5wQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjuVicEyH0fynMRVsDqDSCXCdn4S9Ufu6rRownIzdBEaVPjjOEBNXE2OMw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCju0oicLmiay0Dr9ticFTgNgEGLZeRyuKI0t02ZDeBLj8O0tTOM0xibMopmhw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjukwwGrS7xg2TSYicwtleEibGwaN0S7iaHViaVmIia3L5Qd2vo0RXnaUz7slw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjut3Hmtticeff1PlLLYyVErYXxGGOZib6icfMAiaRibYPib2hl1s6yIhDIGibsQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjuf3gyNbuCWADZIEibMM9pgKIiag471mQrD9xibp6iaTTevUibd6ywgxWmLow/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujxrmbSMXjWjFaMLlX7hGf6yuiaZ0Ose0JVibcCGW7n94xwBQXwSKzic7w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对Quick Sort的进一步理解">
-<meta name="twitter:description" content="最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。">
+<meta name="twitter:title" content="《时间的朋友:20岁生日感言》">
+<meta name="twitter:description" content="既然不能战胜时间，不如和他成为朋友：写在20岁的边上。">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujjQs2hgLqiaVcLp6ysmGzWwvticcibZufcw9iad6IWtUDZVcQUb3ZNL5wQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
 
 
 <script type="text/javascript" id="hexo.configurations">
@@ -152,7 +160,7 @@
 
 
 
-  <title>对Quick Sort的进一步理解 | 西红柿炒番茄</title>
+  <title>《时间的朋友:20岁生日感言》 | 西红柿炒番茄</title>
   
 
 
@@ -334,7 +342,7 @@
   
 
   <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://localhost:4000/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort/">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yunxiao">
@@ -354,7 +362,7 @@
           <h1 class="post-title" itemprop="name headline">
           
           
-            对Quick Sort的进一步理解
+            《时间的朋友:20岁生日感言》
           
         </h1>
         
@@ -368,8 +376,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-05T20:21:13+08:00">
-                2019-11-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T15:23:49+08:00">
+                2020-02-11
               </time>
             
 
@@ -392,8 +400,8 @@
               
                 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/category/#/%E7%AE%97%E6%B3%95" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/category/#/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B" itemprop="url" rel="index">
+                    <span itemprop="name">时间的朋友</span>
                   </a>
                 </span>
 
@@ -409,7 +417,7 @@
 
           
           
-             <span id="/%E7%AE%97%E6%B3%95/2019/11/05/QuickSort/" class="leancloud_visitors" data-flag-title="对Quick Sort的进一步理解">
+             <span id="/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B20/" class="leancloud_visitors" data-flag-title="《时间的朋友:20岁生日感言》">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -428,7 +436,7 @@
           
             
                 <div class="post-description">
-                    
+                    既然不能战胜时间，不如和他成为朋友：写在20岁的边上。
                 </div>
             
           
@@ -458,171 +466,36 @@
 
 
 
-  <p>最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。</p>
+  <p>​        20岁有太多太多话想说，有太多太多故事想讲，有太多太多人想感谢，有太多太多感慨,有太多太多幸运。20年，周围的人换了一批又一批，经历的事一件又一件，初识世间冷暖，人间百态。20年，嘴角的笑起起落落，眉间的愁浓浓淡淡，浅尝聚散离合，悲欢苦乐。20年，太长太短太快太慢。</p>
 
-<h4 id="1-经典的快排算法">1. 经典的快排算法</h4>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujjQs2hgLqiaVcLp6ysmGzWwvticcibZufcw9iad6IWtUDZVcQUb3ZNL5wQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<p>快速排序的基本思想是：先选一个“主元”，用它对整个待排序列进行筛选，以保证：其左边的元素都不大于它，其右边的元素都不小于它。这样，排序问题就被分割为两个子区间。再分别对子区间排序就可以了。</p>
+<p>​        小学六年,人生的一块糖，让我感到甜密，采桑养蚕掏鸟窝，撒网捕鱼钓龙虾。春天的烟花爆竹，夏天的石榴西瓜，秋天的金桔柚子，冬天的木炭红薯。属于物质贫乏年代的记忆却是香甜的。吃完糖已是初中。初中三年，人生的一束光，让我感到眩晕。懵懂叛逆，上网成瘾，整天流连于网吧游戏厅，做错了很多事情。情窦初开，却尝到了盛夏的果实的苦涩。狂妄不羁却挨了现实巴掌。穿过这束光来到高中。高中三年，人生的一道坎，让我感到痛苦。玩了一年睡了一年奋斗了一年，在抑郁低迷中不断放纵自我，磨光了我所有的锐气与勇气，留下了太多的遗憾和痛苦。跨过这道坎已是大学。大学四年，人生的一扇窗，让我感到压力，透过这扇窗看到了一个更大的世界，学了自己喜欢的专业，读了自己想读的书，去了自己想去的地方，交了自己想交的朋友，却没能遇见自己想遇见的人。打开这扇窗,希望靠自己的努力去到自己想去的地方。<img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjuVicEyH0fynMRVsDqDSCXCdn4S9Ufu6rRownIzdBEaVPjjOEBNXE2OMw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<h5 id="简单的递归实现">简单的递归实现：</h5>
+<p>​         轻描淡写的几句话，不知蕴涵了多少辛酸过往。睡过的车站与马路，搬过的水泥和砖头，遭受的白眼与歧视，网吧的烟头和槟榔，高考前倒地的血泊与挣扎，还有那砸的玻璃打的架。以及许许多多怎么说也说不清的感慨。轻描淡写的一段文，不知浓缩了多少快乐瞬间。童年时的江南水乡，玄武湖旁边的立志读书，高中时的毕业的旅行，升学宴上一个月的醉酒，西湖靠椅的酣睡，八达岭的我是好汉，以及太多太多怎么数也数不完的快乐。轻描淡写的一剪时光，不知承载了多少支持感动。彭思老师的短信，万紫薇写的长信，父亲的声声鼓励，母亲悉心的照顾，朋友间的真挚情谊，以及太多太多道也道不完的感动。<img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCju0oicLmiay0Dr9ticFTgNgEGLZeRyuKI0t02ZDeBLj8O0tTOM0xibMopmhw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<pre><code class="language-C">void QuickSort(int* array,int left,int right){
-    //表示已经完成一个组
-	if(left &gt;= right){ 
-		return;
-	}
-    //获取枢轴的位置，并保证主元左边的元素都不大于它，其右边的元素都不小于它
-	int index = PartSort(array,left,right);
-	QuickSort(array,left,index - 1);
-	QuickSort(array,index + 1,right);
-}
-</code></pre>
+<p>​        何其幸运，在我20岁时，是那么的自由与健康，父母兄弟无故，爷爷奶奶外公外婆身体硬朗。何其幸运，在我20岁时，学会了不再去取悦他人，懂得了责任与担当。何其幸运，在我20岁的时候，明白了知足常乐，常怀感恩，保持快乐。何其幸运，在我20岁时，能信心满满的去面对生活中的各种挑战，对未来充满着希望。<img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjukwwGrS7xg2TSYicwtleEibGwaN0S7iaHViaVmIia3L5Qd2vo0RXnaUz7slw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<p>其中代码的核心部分便是 <strong>PartSort()</strong>函数，而PartSort()函数又有三种实现方式，包括 <strong>左右指针法，挖坑法和前后指针法</strong>。下面分别介绍这三种算法的实现方式和原理：</p>
+<p>​        1959年，BBC采访罗素时问的最后一个问题：假如这段影片在一千年后被那时的人们所发现，您想对他们说些什么？</p>
 
-<h5 id="1-左右指针法">1. 左右指针法</h5>
+<p>罗素答到：Love is wise，hatred is foolish. 常怀感恩之心，才是幸福之源泉，也正是因为如此，世界上总有些人的脸上笑容是那么的灿烂，感谢过去20年来所有的关心支持鼓励过我的人，也感谢过去20年来所有的伤害轻视看不起我的人，正是有了这些爱与恨的交织，才铸就了我今天的血液，铠甲，筋骨与肌肉，以及那种发自内心的淡然与洒脱。当然我最想感谢人的还是自己，感谢自己一直以来的坚持与努力。一路走来磕磕碰碰，真的很不容易，虽然也曾放弃堕落，但我依旧感恩过去的自己吃的苦受的罪，正是过去自己的负重前行，才有了今天我的轻描淡写。<img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjut3Hmtticeff1PlLLYyVErYXxGGOZib6icfMAiaRibYPib2hl1s6yIhDIGibsQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<p><strong>原理：</strong></p>
+<p>​        天下大势浩浩汤汤，顺之者昌逆之者亡，我们终将无可避免的要去面对这个时代的考验，分享这个时代的精彩，并被打上这个时代的烙印。中国人说：二十弱冠，三十而立，在这个男人一生中最无力却又最充满可能的年龄,我已能感受到青春的那种冲动正在慢慢的从我身上褪去，成熟与责任开始变成这个20岁大男孩生命的旋律。幸福从来都是奋斗出来的，愿未来10年，行我当行，爱我所爱，遵从内心，三十而立。</p>
 
-<blockquote>
-  <ol>
-    <li>选取一个关键字(key)作为枢轴，一般取整组记录的第一个数/最后一个，这里采用选取序列最后一个数为枢轴。</li>
-    <li>设置两个变量left = 0;right = N - 1;从left一直向后走，直到找到一个大于key的值，right从后至前，直至找到一个小于key的值，然后交换这两个数。</li>
-    <li>重复第三步，一直往后找，直到left和right相遇，这时将key放置left的位置即可。</li>
-  </ol>
-</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjuf3gyNbuCWADZIEibMM9pgKIiag471mQrD9xibp6iaTTevUibd6ywgxWmLow/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<p><strong>代码：</strong></p>
+<p>​         王小波在《黄金年代》里写到：那一天我二十一岁，在我一生的黄金时代。我有好多奢望。我想爱，想吃，还想在一瞬间变成天上半明半暗的云。后来我才知道，生活就是个缓慢受锤的过程，人一天天老下去，奢望也一天天消失，最后变得像挨了锤的牛一样。可是我过二十一岁生日时没有预见到这一点。今天我20岁，我也觉得自己会永远的生猛下去，什么也锤不了我。或许我的生活也是一个缓慢的受锤的过程。但我也会依旧清晰的记得逸夫楼走廊尽头的那首小诗：</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14</pre></td><td class="code"><pre class="highlight"><code><span class="kt">int</span> <span class="n">PartSort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span><span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
-	<span class="kt">int</span><span class="o">&amp;</span> <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
-	<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">++</span><span class="n">left</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">--</span><span class="n">right</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">],</span><span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]);</span>
-	<span class="p">}</span>
-	<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">],</span><span class="n">key</span><span class="p">);</span>
-	<span class="k">return</span> <span class="n">left</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></tbody></table></div></div>
+<p>休提昔日勇，莫怕少年穷。</p>
 
-<h5 id="2-挖坑法">2. 挖坑法</h5>
+<p>青春尤尚在，怎负少年狂。</p>
 
-<p><strong>原理：</strong></p>
+<p>男儿当志远，柔情似水长。</p>
 
-<blockquote>
-  <ol>
-    <li>选取一个关键字(key)作为枢轴，一般取整组记录的第一个数/最后一个，这里采用选取序列最后一个数为枢轴，也是初始的坑位。</li>
-    <li>设置两个变量left = 0;right = N - 1;</li>
-    <li>从left一直向后走，直到找到一个大于key的值，然后将该数放入坑中，坑位变成了array[left]。</li>
-    <li>right一直向前走，直到找到一个小于key的值，然后将该数放入坑中，坑位变成array[right]。</li>
-    <li>重复3和4的步骤，直到left和right相遇，然后将key放入最后一个坑位。</li>
-  </ol>
-</blockquote>
+<p>历尽世间劫，了却心中愿。<img src="https://mmbiz.qpic.cn/mmbiz_png/BqOoK0NzSicjN6RI0tsrh4TLm1WudBCjujxrmbSMXjWjFaMLlX7hGf6yuiaZ0Ose0JVibcCGW7n94xwBQXwSKzic7w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img" /></p>
 
-<p><strong>代码：</strong></p>
+<p>最后祝所有关注我公众号的亲朋师友幸福喜乐，并祝元宵节愉快。</p>
 
-<div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15</pre></td><td class="code"><pre class="highlight"><code><span class="kt">int</span> <span class="n">PartSort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span><span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
-	<span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
-	<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">++</span><span class="n">left</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">];</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">--</span><span class="n">right</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>	 
-	<span class="p">}</span>
-	<span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
-	<span class="k">return</span> <span class="n">right</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></tbody></table></div></div>
-
-<h5 id="3-前后指针法">3. 前后指针法</h5>
-
-<p><strong>原理:</strong></p>
-
-<blockquote>
-  <ol>
-    <li>定义变量cur指向序列的开头，定义变量pre指向cur的前一个位置。</li>
-    <li>当array[cur] &lt; key时，cur和pre同时往后走，如果array[cur]&gt;key，cur往后走，pre留在大于key的数值前一个位置。</li>
-    <li>当array[cur]再次 &lt; key时，交换array[cur]和array[pre]。</li>
-  </ol>
-</blockquote>
-
-<p><strong>代码</strong></p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code><span class="kt">int</span> <span class="n">PartSort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span><span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
-	<span class="k">if</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
-		<span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
-		<span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-		<span class="kt">int</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">cur</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
-            <span class="c1">//如果找到小于key的值，并且cur和pre之间有距离时则进行交换。
-</span>			<span class="k">while</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span> <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">pre</span> <span class="o">!=</span> <span class="n">cur</span><span class="p">)</span>	<span class="p">{</span>
-				<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">cur</span><span class="p">],</span><span class="n">array</span><span class="p">[</span><span class="n">pre</span><span class="p">]);</span>
-			<span class="p">}</span>
-			<span class="o">++</span><span class="n">cur</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">swap</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="o">++</span><span class="n">pre</span><span class="p">],</span><span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]);</span>
-		<span class="k">return</span> <span class="n">pre</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></tbody></table></div></div>
-
-<h4 id="2-快排的时间复杂度分析">2. 快排的时间复杂度分析</h4>
-
-<p>快速排序的时间复杂度和每次划分的比例相关其公式如下所示:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2</pre></td><td class="code"><pre class="highlight"><code>T（n）= T（n/a） + T(n/b) + n
-T（1）= 0  
-</code></pre></td></tr></tbody></table></div></div>
-
-<h5 id="1--最优情况"><strong>1 . 最优情况</strong></h5>
-
-<p>在最优情况下Partition每次都划分的很均匀，即每次都对半分。则   <strong>T(n) = 2 T(n/2) + n</strong></p>
-
-<p>解得 <strong>Ｔ(n) = O(nlogn)</strong></p>
-
-<h5 id="2-最坏情况"><strong>2. 最坏情况：</strong></h5>
-
-<p>而最坏情况Partition每次都划分的极不均匀，即每次都分成1个和n-1个。则  <strong>T(n) =  T(n-1) + T(1) + n</strong></p>
-
-<p>解得 <strong>Ｔ(n) = O(n^2)</strong></p>
-
-<p>由于markdown打公式非常累具体过程可以参照：<a href="https://www.cnblogs.com/LzyRapx/p/9565827.html">https://www.cnblogs.com/LzyRapx/p/9565827.html</a></p>
-
-<h4 id="3-随机快排">3. 随机快排</h4>
-
-<p>从上面的分析可知，当快排遇到已排好的数据时时间复杂度会降到 <strong>O(n^2)</strong> 的复杂度，那么怎么避免出现这种情况呢，使得无论输入数据是什么都有一个较为稳定的性能。其实实现的方法非常简单因为传统的快排在选取主元的时候，每次都选取最右/左边的元素。当序列为有序时，会发现划分出来的两个子序列一个里面没有元素，而另一个则只比原来少一个元素。为了避免这种情况，我们可以引入一个随机化量来破坏这种有序状态。即随机取一个主元而不是取最右/左边的元素。</p>
-
-<p><strong>代码：</strong></p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code><span class="kt">int</span> <span class="n">PartSort</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span><span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
-	<span class="n">random</span> <span class="o">=</span> <span class="n">randomValue</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">random</span><span class="p">];</span>
-	<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">++</span><span class="n">left</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">];</span>
-		<span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">key</span><span class="p">){</span>
-			<span class="o">--</span><span class="n">right</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="n">array</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>	 
-	<span class="p">}</span>
-	<span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
-	<span class="k">return</span> <span class="n">right</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></tbody></table></div></div>
-
-<p>由于使用了随机选取主元的方式，所以随机快排的时间复杂度和输入数据的顺序便不相关了，使得他趋避免了最坏的情况而更加近于平均时间复杂度O(nlogn)使得快排的性能得到了保障，避免了出现性能极差的情况。</p>
 
 
       
@@ -654,10 +527,7 @@ T（1）= 0
         <div class="post-tags">
           
             
-            <a href="/tag/#/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0" rel="tag"># 读书笔记</a>
-          
-            
-            <a href="/tag/#/%E3%80%8A%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%8B" rel="tag"># 《算法导论》</a>
+            <a href="/tag/#/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B" rel="tag"># 时间的朋友</a>
           
         </div>
       
@@ -673,8 +543,8 @@ T（1）= 0
         <div class="post-nav" id="post-nav-id">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/%E6%91%84%E5%BD%B1/2019/11/27/Myphotograph1/" rel="next" title="街拍精选（一)">
-                <i class="fa fa-chevron-left"></i> 街拍精选（一)
+              <a href="/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B/2020/02/11/%E6%97%B6%E9%97%B4%E7%9A%84%E6%9C%8B%E5%8F%8B21/" rel="next" title="《时间的朋友:21岁生日感言》">
+                <i class="fa fa-chevron-left"></i> 《时间的朋友:21岁生日感言》
               </a>
             
           </div>
@@ -683,8 +553,8 @@ T（1）= 0
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/%E9%9A%8F%E7%AC%94/2019/10/26/%E6%88%91%E7%9A%84%E4%BF%9D%E7%A0%94%E4%B9%8B%E6%97%85/" rel="prev" title="我的保研之旅">
-                我的保研之旅 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/10/%E5%A2%A8%E5%A2%A8%E8%83%8C%E5%8D%95%E8%AF%8D%E7%A0%B4%E8%A7%A3%E7%89%88%E5%B8%A6%E5%8F%91%E9%9F%B3%E5%8F%AF%E7%99%BB%E9%99%86/" rel="prev" title="墨墨背单词破解（带发音可登陆）">
+                墨墨背单词破解（带发音可登陆） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -744,17 +614,8 @@ T（1）= 0
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/images/me.jpeg"
@@ -831,34 +692,6 @@ T（1）= 0
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-
-
-
-
-
-
-
-            
-              <div class="post-toc-content">
-    <ol class=nav>
-      <li class="nav-item nav-level-4"> <a class="nav-link" href="#1-经典的快排算法"> <span class="nav-number">1</span> <span class="nav-text">1. 经典的快排算法</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-5"> <a class="nav-link" href="#简单的递归实现"> <span class="nav-number">1.1</span> <span class="nav-text">简单的递归实现：</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#1-左右指针法"> <span class="nav-number">1.2</span> <span class="nav-text">1. 左右指针法</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#2-挖坑法"> <span class="nav-number">1.3</span> <span class="nav-text">2. 挖坑法</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#3-前后指针法"> <span class="nav-number">1.4</span> <span class="nav-text">3. 前后指针法</span> </a> </li> </ol> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#2-快排的时间复杂度分析"> <span class="nav-number">2</span> <span class="nav-text">2. 快排的时间复杂度分析</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-5"> <a class="nav-link" href="#1--最优情况"> <span class="nav-number">2.1</span> <span class="nav-text">1 . 最优情况</strong</span> </a> </li> <li class="nav-item nav-level-5"> <a class="nav-link" href="#2-最坏情况"> <span class="nav-number">2.2</span> <span class="nav-text">2. 最坏情况：</strong</span> </a> </li> </ol> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#3-随机快排"> <span class="nav-number">3</span> <span class="nav-text">3. 随机快排</span> </a> </li>
-    </ol>
-  </div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
