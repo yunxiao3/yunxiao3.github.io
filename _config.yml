@@ -479,9 +479,9 @@ gitalk:
 valine_comment:
   enable: true
 # app_id
-  leancloud_appid: l8xLCgdh8Nier0YAtIC3bSH8-gzGzoHsz
+  leancloud_appid: YqvlBX9zhgth0lv0RfxjCXnV-gzGzoHsz
 # app_key
-  leancloud_appkey: pKb38LL6IJwvdVDhC5ANTvgl
+  leancloud_appkey: 5uENSYowWy1xHixqkABzI5eA
 # placeholde
   placeholder: Write your comments.....
   guest_info: nick,mail # 回复要填写的信息
