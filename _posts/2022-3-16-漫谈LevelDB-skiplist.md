@@ -12,7 +12,7 @@ categories:
 
 ## 1. 整体结构
 
-![img](https://dblab-zju.feishu.cn/space/api/box/stream/download/asynccode/?code=MDZiYzU5YjJkMjgyNTQzMThkNDNhNGIwMDAyNDlkNWRfamkwZWpvb3ZKa1VMYlhoTHdHSGNEdk5NQ0tmRUxVZHNfVG9rZW46Ym94Y25YOWhWTFhpSXcxOWw2QjFiRXByQnFRXzE2NDc0MDc2MzY6MTY0NzQxMTIzNl9WNA)
+![img](https://dblab-zju.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2IwMzlhODUxNGNkMDkxYWE2NDg2MjgyMDM1NmQ5N2RfdURNUkdzNXNyYlpnWUR3aE9VWmpQTmtOY01tcG9BMXpfVG9rZW46Ym94Y25LeGd6d0YzUjBZNDBJaHJCaE1IdTJ2XzE2NDg1NTgwNTU6MTY0ODU2MTY1NV9WNA)
 
 我们可以看到LevelDB中的SkipList 其实和你别的地方看到的SkipList在结构上没有任何区别。如果对SkipList不了解可以先阅读几篇SkipList的介绍博客。
 

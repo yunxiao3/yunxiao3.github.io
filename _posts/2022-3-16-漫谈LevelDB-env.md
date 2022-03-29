@@ -1,6 +1,6 @@
 ---
 title: 《漫谈LevelDB系列之：Env家族》
-description:  本文是漫谈LevelDB系列中的第而篇文章。主要是谈一谈我对LevelDB中核心数据工具类Env的理解。在我看来LevelDB中的Env家族，对底层细节做了非常好的封装使得LevelDB可以很轻松的跨平台运行。是一个非常好的c++学习以及软件设计的样本。
+description:  本文是漫谈LevelDB系列中的第二篇文章。主要是谈一谈我对LevelDB中核心数据工具类Env的理解。在我看来LevelDB中的Env家族，对底层细节做了非常好的封装使得LevelDB可以很轻松的跨平台运行。是一个非常好的c++学习以及软件设计的样本。
 date: Wed 23 Mar 2022 04:09:59
 tags:
   - LevelDB
@@ -12,7 +12,7 @@ categories:
 
 ![img](https://dblab-zju.feishu.cn/space/api/box/stream/download/asynccode/?code=NDIxYWY3NWJmMDIxYWY4YzJlZGU1N2Y2NmZhOWY4OGRfcW9VUmFvTUlMaDJhUkZrRGF3YUxYdXVjRGo0Y1lLUjBfVG9rZW46Ym94Y256UWNSZXdjSG9zYlZjenBhVTJtTldjXzE2NDg1NTc2NzE6MTY0ODU2MTI3MV9WNA)
 
-1. ## 整体设计
+## 1. 整体设计
 
 ![img](https://dblab-zju.feishu.cn/space/api/box/stream/download/asynccode/?code=YmQzNDc3OTg5NjE2Mzg0MDZiY2M5NGU1NDU4ZmM3YWNfa2FjVUF2SXNyQWxUSHM1UTZnb0xVQW13VUhwUzBZWXFfVG9rZW46Ym94Y25uZ1FaTjVVZDM0cFRMYjVJT2ZXZmdiXzE2NDg1NTc2NzE6MTY0ODU2MTI3MV9WNA)
 
@@ -65,11 +65,11 @@ Env* Env::Default() {
 
 而当Leveldb需要生成一个默认的Env实例的时候，则使用了单例模式，这应该是为了确保Leveldb只有单个Env对象被创建，避免环境的错乱。非常值得注意的是Leveldb在具体的实现方式中使用了std::aligned_storage来指定对象的对齐方式。不太确定在这里对齐内存的目的是什么，可能作者考虑到PosixDefaultEnv 调用非常频繁，起到一种加速作用？ [c++ - What is the purpose of std::aligned_storage? - Stack Overflow](https://stackoverflow.com/questions/50271304/what-is-the-purpose-of-stdaligned-storage)
 
-1. ## 文件操作
+## 2. 文件操作
 
 Leveldb中所有的数据都是以SStable的格式持久化在磁盘上的，例如每一个sst其实都是一个2MB（不同版本不一样）文件。而为了更好的读写sst，log等文件，Leveldb定义了RandomAccessFile、SequentialFile、WritableFile等多个类来对Leveldb中的文件进行抽象。
 
-1. ### 只读文件
+### 2.1 只读文件
 
 当leveldb需要读取一个sst的时候，会将该sst的文件路径作为参数传递给NewRandomAccessFile 并由得到一个对应的RandomAccessFile。我们可以看到RandomAccessFile中只有一个Read接口，而生成的其具体的实现则有两种，当mmap_limiter_资源不足的时候返回一个PosixRandomAccessFile，否则优先返回一个PosixMmapReadableFile。
 
@@ -163,7 +163,7 @@ class PosixSequentialFile final : public SequentialFile {
 };
 ```
 
-1. ###  可写文件
+### 2.2 可写文件
 
 相对于只读文件，可写文件的设计和抽象显得更为复杂,不过好在Leveldb中的所有数据都是顺序写入的，并且更新也都是非原地更新，因此WritableFile 只有一个Append接口来对写入数据。
 
@@ -177,140 +177,9 @@ class LEVELDB_EXPORT WritableFile {
 };
 ```
 
-而在其具体实现PosixWritableFile 中做了一些优化，例如在写文件的时候可以先写到kWritableFileBufferSize大小的buff中，然后在flush到磁盘。这样在写入一些小数据操作时，性能提升是巨大的。但是数据写到buffer中断电以后可能丢失，因此还增加了Flush、Sync两个接口来持久化数据。特别是
+而在其具体实现PosixWritableFile 中做了一些优化，例如在写文件的时候可以先写到kWritableFileBufferSize大小的buff中，然后在flush到磁盘。这样在写入一些小数据操作时，性能提升是巨大的。但是数据写到buffer中断电以后可能丢失，因此还增加了Flush、Sync两个接口来持久化数据。TODO(yunxiao)......
 
-```c++
-constexpr const size_t kWritableFileBufferSize = 65536;
-
-class PosixWritableFile final : public WritableFile {
- public:
-
-  Status Append(const Slice& data) override {
-    size_t write_size = data.size();
-    const char* write_data = data.data();
-
-    // Fit as much as possible into buffer.
-    size_t copy_size = std::min(write_size, kWritableFileBufferSize - pos_);
-    std::memcpy(buf_ + pos_, write_data, copy_size);
-  .......
-    // Can't fit in buffer, so need to do at least one write.
-    Status status = FlushBuffer();
-    if (!status.ok()) {
-      return status;
-    }
-    // Small writes go to buffer, large writes are written directly.
-    if (write_size < kWritableFileBufferSize) {
-      std::memcpy(buf_, write_data, write_size);
-      pos_ = write_size;
-      return Status::OK();
-    }
-    return WriteUnbuffered(write_data, write_size);
-  }
-
-  Status Close() override {
-    Status status = FlushBuffer();
-    const int close_result = ::close(fd_);
-    if (close_result < 0 && status.ok()) {
-      status = PosixError(filename_, errno);
-    }
-    fd_ = -1;
-    return status;
-  }
-
-  Status Flush() override {
-    return FlushBuffer();
-  }
-
-  Status Sync() override {
-    // Ensure new files referred to by the manifest are in the filesystem.
-    //
-    // This needs to happen before the manifest file is flushed to disk, to
-    // avoid crashing in a state where the manifest refers to files that are not
-    // yet on disk.
-    Status status = SyncDirIfManifest();
-    if (!status.ok()) {
-      return status;
-    }
-
-    status = FlushBuffer();
-    if (!status.ok()) {
-      return status;
-    }
-
-    return SyncFd(fd_, filename_);
-  }
-
- private:
-  Status FlushBuffer() {
-    Status status = WriteUnbuffered(buf_, pos_);
-    pos_ = 0;
-    return status;
-  }
-
-  Status WriteUnbuffered(const char* data, size_t size) {
-    while (size > 0) {
-      ssize_t write_result = ::write(fd_, data, size);
-      if (write_result < 0) {
-        if (errno == EINTR) {
-          continue;  // Retry
-        }
-        return PosixError(filename_, errno);
-      }
-      data += write_result;
-      size -= write_result;
-    }
-    return Status::OK();
-  }
-
-  Status SyncDirIfManifest() {
-    Status status;
-    if (!is_manifest_) {
-      return status;
-    }
-
-    int fd = ::open(dirname_.c_str(), O_RDONLY);
-    if (fd < 0) {
-      status = PosixError(dirname_, errno);
-    } else {
-      status = SyncFd(fd, dirname_);
-      ::close(fd);
-    }
-    return status;
-  }
-
-  // Ensures that all the caches associated with the given file descriptor's
-  // data are flushed all the way to durable media, and can withstand power
-  // failures.
-  //
-  // The path argument is only used to populate the description string in the
-  // returned Status if an error occurs.
-  static Status SyncFd(int fd, const std::string& fd_path) {
-#if HAVE_FULLFSYNC
-    // On macOS and iOS, fsync() doesn't guarantee durability past power
-    // failures. fcntl(F_FULLFSYNC) is required for that purpose. Some
-    // filesystems don't support fcntl(F_FULLFSYNC), and require a fallback to
-    // fsync().
-    if (::fcntl(fd, F_FULLFSYNC) == 0) {
-      return Status::OK();
-    }
-#endif  // HAVE_FULLFSYNC
-
-#if HAVE_FDATASYNC
-    bool sync_success = ::fdatasync(fd) == 0;
-#else
-    bool sync_success = ::fsync(fd) == 0;
-#endif  // HAVE_FDATASYNC
-
-    if (sync_success) {
-      return Status::OK();
-    }
-    return PosixError(fd_path, errno);
-  }
-
-};
-```
-
-1. ### 资源限制类Limiter
+### 2.3 资源限制类Limiter
 
 ```c++
 // Helper class to limit resource usage to avoid exhaustion.
