@@ -1,6 +1,6 @@
 ---
 title: 《漫谈LevelDB系列之：SkipList 》
-description:  本系列的第一篇文章选择谈一谈LevelDB中memtable的核心数据结构SkipList 。在我看来这个SkipList 在实现上其实做了非常多的取舍，以及特殊设计，是一个非常好的c++学习以及软件设计的样本。
+description:  本文是漫谈LevelDB系列中的第一篇文章。主要是谈一谈我对LevelDB中核心数据结构SkipList的理解。在我看来这个SkipList在实现上其实做了非常多的取舍，以及特殊设计，是一个非常好的c++学习以及软件设计的样本。
 date: Wed 16 Mar 2022 04:09:59
 tags:
   - LevelDB
