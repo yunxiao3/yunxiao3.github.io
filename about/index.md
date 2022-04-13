@@ -3,8 +3,9 @@ layout: page
 type: about
 ---
 
-   
+### About Me
 
-### About Me：www.jackdu.cn
+### Homepage：www.jackdu.cn
 
 ### Email： me@jackdu.cn
+
