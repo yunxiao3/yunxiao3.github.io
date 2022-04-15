@@ -2,7 +2,6 @@
 # Jekyll & Global Configuration
 ## Docs: https://jekyllrb.com/docs/configuration/
 # ---------------------------------------------------------------
-
 # Site
 title: 请叫我小菜鸡
 subtitle: 须知参差多态，乃是幸福本源
@@ -353,7 +352,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: Menlo
+highlight_theme: normal
 
 
 # ---------------------------------------------------------------
