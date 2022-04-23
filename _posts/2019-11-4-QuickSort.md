@@ -10,7 +10,7 @@ categories:
 
 最近闲来无事，重新学习了一下算法，选用的教材则是大名鼎鼎的《算法导论》。不得不说算法导论真的是一本神书，只是当年自己过于年轻而不得其精髓。在看算法导论之前，自己对快排的理解只停留在实现和使用上，但是对里面的思想却一无所知。总的来说快排是分治思想的一种体现，而书中对快排优化时采用的随机算法和概率分析，让我不禁感慨理论才是指导实践的第一标准。
 
-#### 1. 经典的快排算法
+## 1. 经典的快排算法
 
 快速排序的基本思想是：先选一个“主元”，用它对整个待排序列进行筛选，以保证：其左边的元素都不大于它，其右边的元素都不小于它。这样，排序问题就被分割为两个子区间。再分别对子区间排序就可以了。
 
@@ -118,7 +118,7 @@ int PartSort(int* array,int left,int right){
 }
 ~~~
 
-#### 2. 快排的时间复杂度分析
+## 2. 快排的时间复杂度分析
 
 快速排序的时间复杂度和每次划分的比例相关其公式如下所示:
 
@@ -141,7 +141,7 @@ T（1）= 0
 
 由于markdown打公式非常累具体过程可以参照：<https://www.cnblogs.com/LzyRapx/p/9565827.html>
 
-#### 3. 随机快排
+## 3. 随机快排
 
 从上面的分析可知，当快排遇到已排好的数据时时间复杂度会降到 **O(n^2)** 的复杂度，那么怎么避免出现这种情况呢，使得无论输入数据是什么都有一个较为稳定的性能。其实实现的方法非常简单因为传统的快排在选取主元的时候，每次都选取最右/左边的元素。当序列为有序时，会发现划分出来的两个子序列一个里面没有元素，而另一个则只比原来少一个元素。为了避免这种情况，我们可以引入一个随机化量来破坏这种有序状态。即随机取一个主元而不是取最右/左边的元素。
 
@@ -149,7 +149,7 @@ T（1）= 0
 
 ~~~c
 int PartSort(int* array,int left,int right){
-	random = randomValue(left, right);
+	int random = randomValue(left, right);
     int key = array[random];
 	while(left < right){
 		while(left < right && array[left] <= key){
@@ -167,3 +167,45 @@ int PartSort(int* array,int left,int right){
 ~~~
 
 由于使用了随机选取主元的方式，所以随机快排的时间复杂度和输入数据的顺序便不相关了，使得他趋避免了最坏的情况而更加近于平均时间复杂度O(nlogn)使得快排的性能得到了保障，避免了出现性能极差的情况。
+
+## 4. 三数取中
+
+由于随机基准选取的随机性(即使是同一个数组，多次运行的时间也大有不同)，使得它并不能很好的适用于所有情况。虽然随机数算法能有效的减少升序数组排序所用的时间，并且数组元素越多，随机数算法的效果越好（无限趋近O(nlogn)）。但是在一个有0万个元素而且各不相同的上升序数组中，第一次划分时，基准选的最差的概率就是十万分之一，当然选择最优基准的概率也是十万分之一。这使得随机快排的性能非常不稳定，O(nlogn)的复杂度只是一个理论上的平均值。因此除了随机选取基准之外，比较好的方法是使用三数取中选取基准。它的思想是：选取数组开头，中间和结尾的元素，通过比较，选择中间的值作为快排的基准。其实可以将这个数字扩展到更大(例如5数取中，7数取中等)。这种方式能很好的解决待排数组基本有序的情况，而且选取的基准没有随机性使得算法的稳定性更好。
+
+~~~c
+
+int NumberOfThree(int array[],int left,int right){
+    int mid = left + ((right - left) >> 1);
+    if (array[mid] > array[right]){
+        Swap(array[mid],array[right]);
+    }
+    if (array[left] > array[right]){
+        Swap(array[left],array[right]);
+    }
+    if (array[mid] > array[left]) {
+        Swap(array[mid],array[left]);
+    }
+    return array[left];
+}
+
+......
+
+int PartSort(int* array,int left,int right){
+	int random = randomValue(left, right);
+    int key = array[random];
+	while(left < right){
+		while(left < right && array[left] <= key){
+			++left;
+		}
+		array[right] = array[left];
+		while(left < right && array[right] >= key){
+			--right;
+		}
+		array[left] = array[right];	 
+	}
+	array[right] = key;
+	return right;
+}
+
+~~~
+
